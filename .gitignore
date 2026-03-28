@@ -39,3 +39,20 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+/app/generated/prisma
+
+# dice photos (uploaded by Pi)
+/public/rolls/*.jpg
+
+# dice photos
+/data/rolls/*.jpg
+
+# pi node_modules
+/pi/node_modules
+/pi/dist
+
+# scripts
+claude_.sh
+twitter-poll.sh
+HARDWARE/

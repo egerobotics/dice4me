@@ -1,0 +1,31 @@
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model Roll {
+  id             String    @id @default(cuid())
+  rollNumber     Int       @unique @default(autoincrement())
+  status         String    @default("pending") // pending | rolling | completed | failed
+  photoUrl       String?
+  triggeredBy    String    @default("web") // web | twitter
+  twitterTweetId String?
+  twitterUser    String?
+  replyTweetId   String?
+  errorMessage   String?
+  createdAt      DateTime  @default(now())
+  completedAt    DateTime?
+
+  @@index([triggeredBy])
+  @@index([createdAt])
+  @@index([twitterTweetId])
+}
+
+model Setting {
+  key   String @id
+  value String
+}

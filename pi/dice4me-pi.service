@@ -1,0 +1,20 @@
+[Unit]
+Description=dice4me Pi Server
+After=network.target
+
+[Service]
+Type=simple
+User=root
+WorkingDirectory=/home/emre/dice4me
+Environment=DICE4ME_API_KEY=a7ee96f888ee32cab54cacfa00635a7bcc2e719f50bc69843afbb771a927ddec
+Environment=PORT=3001
+Environment=STREAM_CAM=/dev/video2
+Environment=PHOTO_CAM=/dev/video2
+Environment=SERVO_PIN=18
+ExecStartPre=/bin/sleep 10
+ExecStart=/usr/bin/tsx src/index.ts
+Restart=always
+RestartSec=5
+
+[Install]
+WantedBy=multi-user.target
