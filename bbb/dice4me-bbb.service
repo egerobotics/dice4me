@@ -1,0 +1,16 @@
+[Unit]
+Description=dice4me BeagleBone Server
+After=network.target
+
+[Service]
+Type=simple
+User=root
+WorkingDirectory=/home/debian/dice4me
+EnvironmentFile=/home/debian/dice4me/.env
+ExecStartPre=/bin/sleep 10
+ExecStart=/usr/bin/node --max-old-space-size=96 dist/index.js
+Restart=always
+RestartSec=5
+
+[Install]
+WantedBy=multi-user.target
